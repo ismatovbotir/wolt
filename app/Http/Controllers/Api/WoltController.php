@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Wolt;
 
 class WoltController extends Controller
 {
@@ -64,7 +65,16 @@ class WoltController extends Controller
     }
 
     public function authorization(Request $request){
-        
+
+        $data=$request->all();
+        try{
+            $newToken=Wolt::create($data);
+            return response()->json(["status"=>"success"],200);
+
+        }catch(\Exception $e){
+            return response()->json(["status"=>"success"],500);
+
+        }
 
     }
 }
