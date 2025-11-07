@@ -69,10 +69,10 @@ class WoltController extends Controller
         $data=$request->all();
         try{
             $newToken=Wolt::create($data);
-            return response()->json(["status"=>"success"],200);
+            return response()->json(["status"=>"success","token"=>env('WOLT')],200);
 
         }catch(\Exception $e){
-            return response()->json(["status"=>"success"],500);
+            return response()->json(["status"=>"error"],500);
 
         }
 
