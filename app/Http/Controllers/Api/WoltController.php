@@ -66,6 +66,15 @@ class WoltController extends Controller
 
     public function authorization(Request $request){
 
+        $headerKey = $request->header('X-API-Key');
+
+        if (!$headerKey || $headerKey !== env('WOLT')) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'missing X-API-Key',
+            ], 401); // 401 Unauthorized
+        }
+
         $data=$request->all();
         try{
             $newToken=Wolt::create($data);
