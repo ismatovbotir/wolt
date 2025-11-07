@@ -26,7 +26,15 @@ Route::group(['prefix'=>'wolt'],function(){
 
 });
 
+Route::fallback(function (Request $request) {
+    // Проверяем, ожидает ли клиент JSON (например, API-запрос)
+    if ($request->expectsJson()) {
+        return response()->json([
+            'error' => 'Страница не найдена',
+            'code' => 404,
+        ], 404);
+    }
 
-Route::fallback(function () {
-    return ["status"=>"wrong URL"];
+    // Для обычных web-запросов — возвращаем шаблон 404
+    return response()->view('errors.404', [], 404);
 });
