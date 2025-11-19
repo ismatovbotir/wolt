@@ -105,7 +105,7 @@ class WoltController extends Controller
 
             }
 
-            return response()->json(["status"=>"success"],200);
+            
 
         }catch(\Exception $e){
             return response()->json(["status"=>"error"],500);
