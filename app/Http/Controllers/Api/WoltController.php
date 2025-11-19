@@ -83,7 +83,7 @@ class WoltController extends Controller
                 'Accept' => 'application/json',
                 'X-API-Key'=>$headerKey])
                 ->withBody(json_encode($data))
-                ->post("http://213.230.99.65:8080/api/wolt/authorize");
+                ->post("http://213.230.99.65:8080/api/wolt/authorization");
             if($request->successful()){
                 switch($request->status()){
                     case 200:
