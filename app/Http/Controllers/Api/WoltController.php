@@ -96,7 +96,10 @@ class WoltController extends Controller
                         ], 401); // 401 Unauthorized
                     break;
                     case 500:
-                        return response()->json(["status"=>"error"],500);    
+                        return response()->json([
+                                                    "status"=>"error",
+                                                    "msg"=>$request->body()
+                                                ],500);    
                     break;
                     default:
                         return response()->json(["status"=>"error"],500);
